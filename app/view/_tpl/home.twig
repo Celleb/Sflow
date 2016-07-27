@@ -1,0 +1,51 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid">
+	<div class="container">
+	    <div class="page-header">
+		<h1> {{ data.pageHeader }} </h1>
+	    </div>
+	    <div id="loginFormContainer" class="row">
+		<div class="col-md-8 col-centered ">
+		    <div class="panel panel-primary">
+			<div class="panel-heading">
+			    <h3 class="panel-title">Login</h3>
+			</div>
+			<div class="panel-body">
+			    <form id="loginForm" method="post" action="/auth">
+				<div class="input-group input-group-lg">
+				    <span class="input-group-addon">
+					<i class="fa fa-user fa"></i>
+				    </span>
+				    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+				</div>
+				<br/>
+				<br/>
+				<div class="input-group input-group-lg">
+				    <span class="input-group-addon">
+					<i class="fa fa-key fa"></i>
+				    </span>
+				    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+				</div>
+			    </form>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+{% endblock %}

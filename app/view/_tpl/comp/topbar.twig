@@ -1,0 +1,16 @@
+<div class="navbar navbar-default navbar-fixed-top" id="toolbar">
+    <div class="container center-block">
+	<div class="navbar-header">
+	    <a class="navbar-brand" href="./">
+		<strong><em>Sflow</em></strong>
+	    </a>
+	</div>
+	<div class='pull-right'>
+	    {% if session.user_id %}
+		{% include 'comp/auth_user.twig' %}
+	    {% else %}
+		<a type="button" href="/auth" class="btn btn-primary navbar-btn">Login</a>
+	    {% endif %}
+	</div>
+    </div>
+</div>

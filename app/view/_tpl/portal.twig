@@ -1,0 +1,38 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header">
+		<h2> {{ data.pageHeader }} </h2>
+	    </div>
+	    <div class="row mapContainer">
+		<div class="col-md-9 mapSubContainer">
+		    <div id="map">
+
+		    </div>
+		</div>
+		<div class="col-md-3">
+
+		</div>
+	    </div>
+	</div>
+    </div>
+
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script async defer
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSgOeLg06qVYMJAeFjU6S_0Bk1HaO9c94&callback=initMap">
+    </script>
+{% endblock %}

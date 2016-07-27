@@ -1,0 +1,24 @@
+{# ${name} Twig template #}
+<div class="container">
+    <ol class="breadcrumb">
+	<li><a href="{% if meta.lang == 'en' %} /">Home{% else %} de">Start{% endif %}</a></li>
+	    {% set prev = '' %}
+	    {% set prev_link = '' %}
+	    {% for link in url %}
+		{% if link == data.page %}
+
+		<li class="active">{{ links_translate[link|lower][meta.lang] }}</li>
+		{% else %}
+		<li>
+		    <a href="{{ tb.url_lang(meta.lang) }}{{ prev_link~link }}">
+			{{ links_translate[link|lower][meta.lang] }}
+		    </a>
+		    {% set prev_link = link~'/' %}
+		</li>
+	    {% endif %}
+	    {% set prev = prev ~"/"~link %}
+	{% endfor %}
+    </ol>
+
+</div>
+<hr class="limit-top"/>

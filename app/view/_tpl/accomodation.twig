@@ -1,0 +1,24 @@
+{# Accomodation Twig template #}
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    {% import 'macros/toolbox.twig' as tb %}
+    <div class="fluid-container page-header-container">
+	<div class="page-header container">
+	    <h1> {{ data.pageHeader }} </h1>
+	</div>
+    </div>
+    {% include 'comp/breadcrumb.twig' %}
+    {% include 'comp/'~data.page~'.twig' %}
+{% endblock %}
+
+{# footer block #}
+{% block footer %}
+{% endblock %}
