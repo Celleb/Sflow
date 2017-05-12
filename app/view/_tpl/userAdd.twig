@@ -1,0 +1,76 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-md-6">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+	    </div>
+	    <br/>
+	    <form class="form-horizontal">
+
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="userId" class="sr-only control-label">User ID</label>
+			<input type="text" class="form-control disabled" readonly id="userId" placeholder=""/>
+		    </div>
+		    <div class="col-md-6">
+			<label for="username" class="sr-only control-label">User name</label>
+			<input type="text" class="form-control " id="username" placeholder="Username" required"/>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="fname" class="sr-only control-label">First name</label>
+			<input type="text" class="form-control " id="fname" required placeholder="First name"/>
+		    </div>
+		    <div class="col-md-6">
+			<label for="sname" class="sr-only control-label">Surname</label>
+			<input type="text" class="form-control " id="sname" required placeholder="Longitude"/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="password" class="sr-only control-label">Password</label>
+			<input type="password" class="form-control " id="password" required placeholder="Password" />
+		    </div>
+		    <div class="col-md-6">
+			<label for="password2" class="sr-only control-label">Confirm Password</label>
+			<input type="password" class="form-control " id="password2" required placeholder="Confirm Password"/>
+		    </div>
+		</div>
+	    </form>
+	    <center>
+		<button class="btn btn-lg btn-success" id="AddUser"  data-toggle="modal" data-target="#UserAddModal">
+		    <i class="fa fa-plus"></i> User
+		</button>
+	    </center>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="UserAddModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<i class="fa fa-circle-o-notch fa-2x fa-spin" aria-hidden="true"></i>
+		<span class="h3">Adding new user...</span>
+	    </div>
+	</div>
+    </div>
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/application.js">
+    </script>
+{% endblock %}

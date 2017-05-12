@@ -1,0 +1,28 @@
+/*
+    Created on : 12-Feb-2016, 16:44:58
+    Author     : Jonas Tomagna
+*/
+
+@mixin make-sm-column-custom($columns, $gutter: $grid-gutter-width, $grid_columns: $grid-columns) {
+    position: relative;
+    min-height: 1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-sm-min) {
+	float: left;
+	width: percentage(($columns / $grid_columns));
+    }
+}
+
+@mixin img-fit-to-width(){
+    width: auto;
+    height : auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@mixin col-centered() {
+    float: none;
+    margin: 0 auto;
+}

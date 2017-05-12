@@ -21,7 +21,7 @@ class HomeController extends Controller {
 	$meta_data = array('title' => 'Home', 'description' => '', 'keywords' => '', 'lang' => 'en');
 
 	$this->model->setMetaData($meta_data);
-	$data = array('pageHeader' => 'Welcome to Sflow Traffic Light System');
+	$data = array('pageHeader' => 'Welcome to Sflow Traffic Information System');
 	$this->model->setData($data);
     }
 

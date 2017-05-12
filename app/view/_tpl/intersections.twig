@@ -1,0 +1,64 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-lg-8">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+		<div class="col-md-4">
+		    <a href="/intersections/add" class="btn btn-primary pull-right">
+			<i class="fa fa-plus"></i> Intersection
+		    </a>
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-md-12">
+		    {% if (content.intersections) %}
+			<table class="table table-hover table-striped table-responsive">
+			    <thead>
+				<tr>
+				    <th>Int Id </th><th>Intersection Name</th><th>Major Street</th>
+				    <th>Minor Street</th><th>Phases</th><th>Lat</th><th>Long</th>
+				    <th>Ways</th><th>Date Added</th><th>View</th><th>Edit</th>
+				</tr>
+			    </thead>
+			    <tbody>
+				{% for  int in content.intersections %}
+				    <tr>
+					<td>{{ int.junction_id }}</td><td>{{ int.junction_name }}</td>
+					<td>{{ int.main_street }}</td><td>{{ int.side_street }}</td>
+					<td>{{ int.phases }} </td><td>{{ int.Lat }}</td><td>{{ int.Lond }}</td>
+					<td>{{ int.ways }} </td><td>{{ int.date_added|date("d/m/Y") }}</td>
+					<td><a href="/intersections/view/{{ int.junction_id }}">View</a></td>
+					<td><a href="/intersections/edit/{{ int.junction_id }}">Edit</a></td>
+				    </tr>
+				{% endfor %}
+			    </tbody>
+
+			</table>
+		    {% elseif (data.content.error) %}
+			<h1 class="text-capitalize text-center text-warning">{{ data.content.error }}</h1>
+		    {% else %}
+			<h1 class="text-capitalize text-center text-warning">No intersections found </h1>
+		    {% endif %}
+		</div>
+	    </div>
+	</div>
+    </div>
+
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-lg-8">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+		<div class="col-md-4">
+		    <a href="/users/add" class="btn btn-primary pull-right">
+			<i class="fa fa-plus"></i> User
+		    </a>
+		</div>
+	    </div>
+	    <div class="row">
+		<div class="col-md-12">
+		    {% if (content.users) %}
+			<table class="table table-hover table-striped table-responsive">
+			    <thead>
+				<tr>
+				    <th>User Id </th><th>Usernme</th><th>First Name</th>
+				    <th>Surname</th><th>Edit</th>
+				</tr>
+			    </thead>
+			    <tbody>
+				{% for  user in content.users %}
+				    <tr>
+					<td>{{ user.user_id }}</td><td>{{ user.user_name }}</td>
+					<td>{{ user.Name }}</td><td>{{ user.Surname }}</td>
+					<td><a href="/users/edit/{{ user.user_id }}">Edit</a>
+				    </tr>
+				{% endfor %}
+			    </tbody>
+
+			</table>
+		    {% elseif (data.content.error) %}
+			<h1 class="text-capitalize text-center text-warning">{{ data.content.error }}</h1>
+		    {% else %}
+			<h1 class="text-capitalize text-center text-warning">No users found </h1>
+		    {% endif %}
+		</div>
+	    </div>
+	</div>
+    </div>
+
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+{% endblock %}

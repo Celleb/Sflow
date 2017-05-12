@@ -1,0 +1,221 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2">
+		<h1 class="h2"> {{ data.pageHeader }} </h1>
+	    </div>
+	    <div class="row">
+		<div class="col-md-9">
+		    <div id="main-chart">
+			{% if content.major %}
+			{% elseif content.main_error %}
+			    <h1 class="text-capitalize text-center text-warning">{{ content.main_error }}</h1>
+			{% else %}
+			    <h1 class="text-capitalize text-center text-warning">No traffic data found </h1>
+			{% endif %}
+		    </div>
+		    <div id="side-chart">
+			{% if content.major %}
+			{% elseif content.minor_error %}
+			    <h3 class="text-capitalize text-center text-warning">{{ content.minor_error }}</h3>
+			{% else %}
+			    <h3 class="text-capitalize text-center text-warning">No traffic data found </h3>
+			{% endif %}
+		    </div>
+		</div>
+		<div class="col-md-3 no-padding-left">
+		    {% if content.details %}
+			<h3 class="no-spacing title-underline"> Details </h3>
+			<br/>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Major Street:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.details.main_street }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Minor Street:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.details.side_street }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Phases:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.details.phases }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Ways:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.details.ways }}</p>
+			    </div>
+			</div>
+		    {% elseif content.details_error %}
+			<h3 class="text-capitalize text-center text-warning">{{ content.details_error }}</h3>
+		    {% else %}
+			<h3 class="text-capitalize text-center text-warning">No traffic data found </h3>
+		    {% endif %}
+		    {% if content.vitals %}
+			<br/>
+			<h3 class="no-spacing title-underline"> Major Street </h3>
+			<br/>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Highest Demand:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.vitals.main_max }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Lowest Demand:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.vitals.main_min }}</p>
+			    </div>
+			</div>
+			<br/>
+			<h3 class="no-spacing title-underline"> Minor Street </h3>
+			<br/>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Highest Demand:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.vitals.side_max }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-6">
+				<p><strong>Lowest Demand:</strong></p>
+			    </div>
+			    <div class="col-md-6">
+				<p>{{ content.vitals.side_min }}</p>
+			    </div>
+			</div>
+		    {% elseif content.details_error %}
+			<h3 class="text-capitalize text-center text-warning">{{ content.vitals_error }}</h3>
+		    {% else %}
+			<h3 class="text-capitalize text-center text-warning">No Details Available</h3>
+		    {% endif %}
+		</div>
+	    </div>
+	</div>
+    </div>
+
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/jquery.canvasjs.min.js">
+    </script>
+    <script type="text/javascript">
+	$(function () {
+	{% if content.major %}
+	    {% set total = content.major.length %}
+		$("#main-chart").CanvasJSChart({
+		exportEnabled: true,
+			zoomEnabled: true,
+			height: 400,
+			title: {
+			text: "Major Street Traffic Demand for {{ content.major[0].time|date("d/m/Y")~' - '~content.major[total-1].time|date("d/m/Y")}}",
+				fontFamily: "Open Sans",
+				fontSize: 20
+			},
+			axisY: {
+			title: "Traffic Demand (Vehicle Count)",
+				includeZero: 0,
+				titleFontFamily: "arial",
+				titleFontSize: 16,
+				labelFontFamily: "arial"
+			},
+			axisX: {
+			title: "Time",
+				titleFontFamily: "arial",
+				titleFontSize: 16,
+				labelFontFamily: "arial",
+				interval: 10,
+				labelAngle: - 45
+			},
+			data: [
+			{
+			type: "line", //try changing to column, area
+				toolTipContent: "{label}: {y} Vehicles",
+				dataPoints: [
+	    {% for demand in content.major %}
+				{label: "{{ demand.time|date("H:i:s") }}", y: {{ demand.mainTraffic }} }
+		{% if (not demand.last) %}
+				    ,
+		{% endif %}
+	    {% endfor %}
+				]
+			}
+			]
+		});
+	{% endif %}
+	{% if content.minor %}
+	    {% set total = content.major.length %}
+		$("#side-chart").CanvasJSChart({
+		exportEnabled: true,
+			zoomEnabled: true,
+			height: 400,
+			title: {
+			text: "Minor Street Traffic Demand for {{ content.major[0].time|date("d/m/Y")~' - '~content.major[total-1].time|date("d/m/Y")}}",
+				fontFamily: "Open Sans",
+				fontSize: 20
+			},
+			axisY: {
+			title: "Traffic Demand (Vehicle Count)",
+				includeZero: 0,
+				titleFontFamily: "arial",
+				titleFontSize: 16,
+				labelFontFamily: "arial"
+			},
+			axisX: {
+			title: "Time",
+				titleFontFamily: "arial",
+				titleFontSize: 16,
+				labelFontFamily: "arial",
+				interval: 10,
+				labelAngle: - 45
+			},
+			data: [
+			{
+			type: "line", //try changing to column, area
+				toolTipContent: "{label}: {y} Vehicles",
+				dataPoints: [
+	    {% for demand in content.minor %}
+				{label: "{{ demand.time|date("H:i:s") }}", y: {{ demand.sideTraffic }} }
+		{% if (not demand.last) %}
+				    ,
+		{% endif %}
+	    {% endfor %}
+				]
+			}
+			]
+		});
+	{% endif %}
+	    });
+    </script>
+{% endblock %}

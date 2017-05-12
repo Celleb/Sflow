@@ -1,0 +1,16 @@
+/**/
+
+.scroll {
+    height: 100%;
+}
+.container{
+    margin: 2%;
+}
+ 
+#map{
+    width:95%;
+    box-shadow:0 3px 10px black;
+    height: 100%;
+    margin-bottom: 2%;
+    position: absolute;
+}

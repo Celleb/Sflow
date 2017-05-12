@@ -63,4 +63,8 @@ class Session {
 	return session_destroy() ? true : false;
     }
 
+    public static function redirect() {
+	header("location: /auth");
+    }
+
 }

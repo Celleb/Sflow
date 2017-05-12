@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container-fluid portalContainer">
 	<div class="container">
-	    <div class="page-header">
-		<h2> {{ data.pageHeader }} </h2>
+	    <div class="page-header-v2">
+		<h1 class="h2"> {{ data.pageHeader }} </h1>
 	    </div>
 	    <div class="row mapContainer">
 		<div class="col-md-9 mapSubContainer">
@@ -20,8 +20,38 @@
 
 		    </div>
 		</div>
-		<div class="col-md-3">
-
+		<div class="col-md-3 no-padding-left">
+		    <h3 class="no-spacing title-underline"> Overview </h3>
+		    {% if content.overview %}
+			<div class="row">
+			    <div class="col-md-8">
+				<p><strong>Total Intersections:</strong></p>
+			    </div>
+			    <div class="col-md-4">
+				<p>{{ content.overview.total }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-8">
+				<p><strong>Total Active:</strong></p>
+			    </div>
+			    <div class="col-md-4">
+				<p>{{ content.overview.active_total }}</p>
+			    </div>
+			</div>
+			<div class="row">
+			    <div class="col-md-8">
+				<p><strong>Total Inactive:</strong></p>
+			    </div>
+			    <div class="col-md-4">
+				<p>{{ content.overview.total - content.overview.active_total }}</p>
+			    </div>
+			</div>
+		    {% elseif (data.content.error) %}
+			<h1 class="text-capitalize text-center text-warning">{{ data.overview.error }}</h1>
+		    {% else %}
+			<h1 class="text-capitalize text-center text-warning">No info found </h1>
+		    {% endif %}
 		</div>
 	    </div>
 	</div>

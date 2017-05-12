@@ -1,0 +1,69 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-md-6">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+	    </div>
+	    <br/>
+	    <form class="form-horizontal">
+
+		<div class="form-group form-group-lg">
+		    <div class="col-md-12">
+			<label for="street" class="control-label">Street name:</label>
+			<input type="text" class="form-control " id="street" placeholder="Street name" required/>
+		    </div>
+		</div>
+		<fieldsets>
+		    <legend>Coordinates</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="latitude" class="control-label">Latitude:</label>
+			    <input type="text" class="form-control " id="latitude" required placeholder="Latitude"/>
+			</div>
+			<div class="col-md-6">
+			    <label for="longitude" class="control-label">Longitude:</label>
+			    <input type="text" class="form-control " id="longitude" required placeholder="Longitude"/>
+			</div>
+		    </div>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-12">
+			    <label for="desceription" class="control-label">Description:</label>
+			    <textarea class="form-control textarea" id="description"></textarea>
+			</div>
+		    </div>
+	    </form>
+	    <center>
+		<button class="btn btn-lg btn-success" id="AddAcc"  data-toggle="modal" data-target="#AccAddModal">
+		    <i class="fa fa-plus"></i> Report
+		</button>
+	    </center>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="AccAddModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<i class="fa fa-circle-o-notch fa-2x fa-spin" aria-hidden="true"></i>
+		<span class="h3">Adding new report...</span>
+	    </div>
+	</div>
+    </div>
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/application.js">
+    </script>
+{% endblock %}

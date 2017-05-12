@@ -3,40 +3,21 @@
 
 {# header block #}
 {% block header %}
-
+    <script src="js/map2.js">
+    </script>
 {% endblock %}
 
 {# content block #}
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid portalContainer">
 	<div class="container">
-	    <div class="page-header">
-		<h1> {{ data.pageHeader }} </h1>
+	    <div class="page-header-v2">
+		<h1 class="h2"> {{ data.pageHeader }} </h1>
 	    </div>
-	    <div id="loginFormContainer" class="row">
-		<div class="col-md-8 col-centered ">
-		    <div class="panel panel-primary">
-			<div class="panel-heading">
-			    <h3 class="panel-title">Login</h3>
-			</div>
-			<div class="panel-body">
-			    <form id="loginForm" method="post" action="/auth">
-				<div class="input-group input-group-lg">
-				    <span class="input-group-addon">
-					<i class="fa fa-user fa"></i>
-				    </span>
-				    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
-				</div>
-				<br/>
-				<br/>
-				<div class="input-group input-group-lg">
-				    <span class="input-group-addon">
-					<i class="fa fa-key fa"></i>
-				    </span>
-				    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-				</div>
-			    </form>
-			</div>
+	    <div class="row mapContainer">
+		<div class="col-md-12 mapSubContainer">
+		    <div id="map">
+
 		    </div>
 		</div>
 	    </div>
@@ -48,4 +29,7 @@
 {# footer block #}
 
 {% block footer %}
+    <script async defer
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSgOeLg06qVYMJAeFjU6S_0Bk1HaO9c94&callback=initMap">
+    </script>
 {% endblock %}

@@ -28,7 +28,7 @@ class AuthModel extends ViewModel {
 	    $this->results = $this->db->fetch($sql, array(':user' => $this->info['username'], ':pass' => $this->info['password']));
 	    if ($this->results) {
 		Session::setUserInfo($this->results);
-		header("location: ../portal");
+		header("location: /portal");
 	    } else {
 		$this->content['error'] = "Invalid login, please try again";
 	    }

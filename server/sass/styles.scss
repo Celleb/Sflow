@@ -46,11 +46,32 @@ body { padding-top: 60px;
 
 .portalContainer {
     .page-header {
-	margin-top: 0;
-	padding-top: 0;
-	h2 {
-	    margin-top: 5px;
+
+    }
+}
+
+#main-menu {
+    li {
+	font-size: 16pt;
+	i {
+	    display: inline-block;
+	    width: 60px;
+	    left: 0;
+	    right: 0;
+	    margin: auto;
+	}
+	a {
+	    padding-right: 20px;
 	}
     }
+}
+
+#main-chart, #side-chart {
+    min-height: 400px;
+}
+
+#addModal {
+    margin-top: 200px;
+    padding: 5px;
 }
 

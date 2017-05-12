@@ -1,0 +1,100 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-md-6">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+		<div class="col-md-6">
+		    <button class="btn btn-danger pull-right" data-id="{{ content.details.junction_id }}" id="delete" data-toggle="modal" data-target="#DeleteModal">
+			<i class="fa fa-minus-circle"></i> Intersection
+		    </button>
+		</div>
+	    </div>
+	    <br/>
+	    <form class="form-horizontal">
+		<fieldsets>
+		    <legend>Streets</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="majorStreet" class="sr-only control-label">Major Street</label>
+			    <input type="text" class="form-control " id="majorStreet" placeholder="Major Street" value="{{ content.details.main_street }}"/>
+			</div>
+			<div class="col-md-6">
+			    <label for="minorStreet" class="sr-only control-label">Minor Street</label>
+			    <input type="text" class="form-control " id="minorStreet" placeholder="Minor Street" value="{{ content.details.side_street }}"/>
+			</div>
+		    </div>
+		</fieldsets>
+		<fieldsets>
+		    <legend>Coordinates</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="latitude" class="sr-only control-label">Latitude</label>
+			    <input type="text" class="form-control " id="latitude" placeholder="Latitude" value="{{ content.details.Lat }}"/>
+			</div>
+			<div class="col-md-6">
+			    <label for="longitude" class="sr-only control-label">Longitude</label>
+			    <input type="text" class="form-control " id="longitude" placeholder="Longitude" value="{{ content.details.Lond }}"/>
+			</div>
+		    </div>
+		</fieldsets>
+		<fieldsets>
+		    <legend>Properties</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="phases" class="sr-only control-label">Phases</label>
+			    <input type="text" class="form-control " id="phases" placeholder="Phases" value="{{ content.details.phases }}"/>
+			</div>
+			<div class="col-md-6">
+			    <label for="ways" class="sr-only control-label">Ways</label>
+			    <input type="text" class="form-control " id="ways" placeholder="Ways" value="{{ content.details.ways }}"/>
+			</div>
+		    </div>
+		</fieldsets>
+	    </form>
+	    <center>
+		<button class="btn btn-lg btn-success" id="EditInt" data-id="{{ content.details.junction_id }}" data-toggle="modal" data-target="#EditModal">
+		    <i class="fa fa-edit"></i> Intersection
+		</button>
+	    </center>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="EditModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<i class="fa fa-circle-o-notch fa-2x fa-spin" aria-hidden="true"></i>
+		<span class="h3">Updating Intersection...</span>
+	    </div>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="DeleteModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<span class="h3">Remove intersection?</span>
+		<div class="modal-footer">
+		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		    <button type="button" class="btn btn-danger" id="remove">Remove</button>
+		</div>
+	    </div>
+
+	</div>
+    </div>
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/application.js">
+    </script>
+{% endblock %}

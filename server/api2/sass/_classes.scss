@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 13-Feb-2016, 11:05:24
+    Author     : Celleb
+*/
+.fit-to-width {
+    @include img-fit-to-width;
+}
+
+.text-sm-left {
+    @media (min-width: $screen-sm-min){
+	text-align: left;
+    }
+}
+.text-xs-center {
+    @media (max-width: $screen-xs-max){
+
+	text-align: center;
+    }
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.text-indent {
+    text-indent: 25px;
+}
+
+
+.text-medium {
+    font-size: 16px;
+}
+
+
+
+
+

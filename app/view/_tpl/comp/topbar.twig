@@ -8,6 +8,7 @@
 	<div class='pull-right'>
 	    {% if session.user_id %}
 		{% include 'comp/auth_user.twig' %}
+		{% include 'comp/menu.twig' %}
 	    {% else %}
 		<a type="button" href="/auth" class="btn btn-primary navbar-btn">Login</a>
 	    {% endif %}

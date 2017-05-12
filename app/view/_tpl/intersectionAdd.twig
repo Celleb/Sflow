@@ -1,0 +1,81 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2">
+		<h1 class="h2"> {{ data.pageHeader }} </h1>
+	    </div>
+	    <br/>
+	    <form class="form-horizontal">
+		<fieldsets>
+		    <legend>Streets</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="majorStreet" class="sr-only control-label">Major Street</label>
+			    <input type="text" class="form-control " id="majorStreet" placeholder="Major Street">
+			</div>
+			<div class="col-md-6">
+			    <label for="minorStreet" class="sr-only control-label">Minor Street</label>
+			    <input type="text" class="form-control " id="minorStreet" placeholder="Minor Street">
+			</div>
+		    </div>
+		</fieldsets>
+		<fieldsets>
+		    <legend>Coordinates</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="latitude" class="sr-only control-label">Latitude</label>
+			    <input type="text" class="form-control " id="latitude" placeholder="Latitude">
+			</div>
+			<div class="col-md-6">
+			    <label for="longitude" class="sr-only control-label">Longitude</label>
+			    <input type="text" class="form-control " id="longitude" placeholder="Longitude">
+			</div>
+		    </div>
+		</fieldsets>
+		<fieldsets>
+		    <legend>Properties</legend>
+		    <div class="form-group form-group-lg">
+			<div class="col-md-6">
+			    <label for="phases" class="sr-only control-label">Phases</label>
+			    <input type="text" class="form-control " id="phases" placeholder="Phases">
+			</div>
+			<div class="col-md-6">
+			    <label for="ways" class="sr-only control-label">Ways</label>
+			    <input type="text" class="form-control " id="ways" placeholder="Ways">
+			</div>
+		    </div>
+		</fieldsets>
+	    </form>
+	    <center>
+		<button class="btn btn-lg btn-success" id="addInt" data-toggle="modal" data-target="#addModal">
+		    <i class="fa fa-plus"></i> Intersection
+		</button>
+	    </center>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="addModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<i class="fa fa-circle-o-notch fa-2x fa-spin" aria-hidden="true"></i>
+		<span class="h3">Adding Intersection...</span>
+	    </div>
+	</div>
+    </div>
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/application.js">
+    </script>
+{% endblock %}

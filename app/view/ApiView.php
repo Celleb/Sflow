@@ -18,7 +18,7 @@ class ApiView extends View implements ViewInterface {
      * @override
      */
     public function Output() {
-
+	print json_encode($this->model->getOutput());
     }
 
 }

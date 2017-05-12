@@ -1,0 +1,93 @@
+{# Home Template #}
+{% extends "_base.twig" %}
+
+{# header block #}
+{% block header %}
+    <script src="js/map.js">
+    </script>
+{% endblock %}
+
+{# content block #}
+{% block content %}
+    <div class="container-fluid portalContainer">
+	<div class="container">
+	    <div class="page-header-v2 row">
+		<div class="col-md-6">
+		    <h1 class="h2"> {{ data.pageHeader }} </h1>
+		</div>
+		<div class="col-md-6">
+		    <button class="btn btn-danger pull-right" data-id="{{ content.user_id }}" id="delete" data-toggle="modal" data-target="#UserDeleteModal">
+			<i class="fa fa-minus-circle"></i> User
+		    </button>
+		</div>
+	    </div>
+	    <br/>
+	    <form class="form-horizontal">
+
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="userId" class="sr-only control-label">User ID</label>
+			<input type="text" class="form-control disabled" readonly id="userId" placeholder="" value="{{ content.user_id }}"/>
+		    </div>
+		    <div class="col-md-6">
+			<label for="username" class="sr-only control-label">User name</label>
+			<input type="text" class="form-control " id="username" placeholder="Username" required value="{{ content.user_name }}"/>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="fname" class="sr-only control-label">First name</label>
+			<input type="text" class="form-control " id="fname" required placeholder="First name" value="{{ content.Name}}"/>
+		    </div>
+		    <div class="col-md-6">
+			<label for="sname" class="sr-only control-label">Surname</label>
+			<input type="text" class="form-control " id="sname" required placeholder="Longitude" value="{{ content.Surname }}"/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+		    <div class="col-md-6">
+			<label for="password" class="sr-only control-label">Password</label>
+			<input type="password" class="form-control " id="password" placeholder="Password" />
+		    </div>
+		    <div class="col-md-6">
+			<label for="password2" class="sr-only control-label">Confirm Password</label>
+			<input type="password" class="form-control " id="password2" placeholder="Confirm Password"/>
+		    </div>
+		</div>
+	    </form>
+	    <center>
+		<button class="btn btn-lg btn-success" id="EditUser" data-id="{{ content.user_id }}" data-toggle="modal" data-target="#UserEditModal">
+		    <i class="fa fa-edit"></i> User
+		</button>
+	    </center>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="UserEditModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<i class="fa fa-circle-o-notch fa-2x fa-spin" aria-hidden="true"></i>
+		<span class="h3">Updating User...</span>
+	    </div>
+	</div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="UserDeleteModal">
+	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+		<span class="h3">Remove user?</span>
+		<div class="modal-footer">
+		    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		    <button type="button" class="btn btn-danger" id="remove-user">Remove</button>
+		</div>
+	    </div>
+
+	</div>
+    </div>
+{% endblock %}
+
+{# footer block #}
+
+{% block footer %}
+    <script src="js/application.js">
+    </script>
+{% endblock %}
